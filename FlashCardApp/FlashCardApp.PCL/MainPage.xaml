@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FlashCardApp"
+             xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             x:Class="FlashCardApp.PCL.MainPage"
+             x:Name="this">
+    <ContentPage.Content>
+                <cv:CarouselView ItemsSource="{Binding FlashWords}" x:Name="CarouselWords">
+                <cv:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding .}" FontSize="60"
+                                VerticalOptions="CenterAndExpand" 
+                                HorizontalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </DataTemplate>
+                </cv:CarouselView.ItemTemplate>
+            </cv:CarouselView>
+    <!--<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="5">
+        <StackLayout>
+            <Label 
+                Text="{Binding .}" FontSize="70"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+
+        <Button 
+            x:Name="previousWordButton" 
+            Text="&lt; Previous Word" 
+            Clicked="OnPreviousWordClicked" >
+        </Button>
+        <Button x:Name="nextWordButton" Text="Next Word &gt;" Clicked="OnNextWordClicked" >
+        </Button>
+    </StackLayout>-->
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FlashCardApp.FlashCardPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:FlashCardApp.Converters"
+    xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+    x:Name="this"
+    Title="Flash Cards">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding BindingContext.EditFlashCardWordsCommand, Source={x:Reference this}}" Text="Edit" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <Label IsVisible="{Binding FlashWords, Converter={x:Static converters:ItemSourceConverter.Instance}}" Text="No words added. Go Edit Words!" />
+        <cv:CarouselView x:Name="CarouselWords" ItemsSource="{Binding FlashWords}">
+            <cv:CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label
+                            FontSize="60"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="{Binding Word}"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </DataTemplate>
+            </cv:CarouselView.ItemTemplate>
+        </cv:CarouselView>
+    </StackLayout>
+    <!--<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="5">
+                <Button
+                    x:Name="previousWordButton"
+                    Text="&lt; Previous Word"
+                    Clicked="OnPreviousWordClicked" >
+                </Button>
+                <Button x:Name="nextWordButton" Text="Next Word &gt;" Clicked="OnNextWordClicked" >
+                </Button>
+            </StackLayout>-->
+</ContentPage>
