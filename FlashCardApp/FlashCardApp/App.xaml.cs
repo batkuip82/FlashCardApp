@@ -1,4 +1,7 @@
-﻿using Prism.Unity;
+﻿using FlashCardApp.ViewModels;
+using FlashCardApp.Views;
+using FlashCardApp.Views.Admin;
+using Prism.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,12 +37,17 @@ namespace FlashCardApp
 
         protected override void OnInitialized()
         {
-            throw new NotImplementedException();
+            InitializeComponent();
+
+            NavigationService.NavigateAsync(new Uri("/NavigationPage/Views/FlashCardPage", UriKind.Absolute));
         }
 
         protected override void RegisterTypes()
         {
-            throw new NotImplementedException();
+            Container.RegisterTypeForNavigation<NavigationPage>();
+            Container.RegisterTypeForNavigation<FlashCardPage, FlashCardPageViewModel>();
+            Container.RegisterTypeForNavigation<EditWordsPage, EditWordsPageViewModel>();
+
         }
     }
 }

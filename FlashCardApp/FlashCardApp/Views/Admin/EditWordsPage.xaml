@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="FlashCardApp.Admin.EditWords"
+    x:Class="FlashCardApp.Views.Admin.EditWordsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
     x:Name="this"
     Title="Edit Words">
     <ContentPage.ToolbarItems>
@@ -26,7 +27,11 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Entry Text="{Binding Word, Mode=TwoWay}" TextChanged="UpdateItem" />
+                            <Entry Text="{Binding Word, Mode=TwoWay}" TextChanged="UpdateItem">
+                                <Entry.Behaviors>
+                                    <b:EventToCommandBehavior Command="{Binding UpdateWordItemCommand}" EventName="TextChanged" />
+                                </Entry.Behaviors>
+                            </Entry>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
