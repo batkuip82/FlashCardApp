@@ -4,9 +4,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:converters="clr-namespace:FlashCardApp.Converters"
     x:Name="this"
     Title="Edit Words">
     <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding BindingContext.ClearListCommand, Source={x:Reference this}}" Text="Clear" />
         <ToolbarItem Command="{Binding BindingContext.SaveWordsListCommand, Source={x:Reference this}}" Text="Save" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -27,15 +29,31 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Entry Text="{Binding Word, Mode=TwoWay}" TextChanged="UpdateItem">
-                                <Entry.Behaviors>
-                                    <b:EventToCommandBehavior Command="{Binding UpdateWordItemCommand}" EventName="TextChanged" />
-                                </Entry.Behaviors>
-                            </Entry>
+                            <StackLayout Orientation="Horizontal">
+                                <Entry Text="{Binding Word, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                                    <Entry.Behaviors>
+                                        <b:EventToCommandBehavior
+                                        Command="{Binding BindingContext.UpdateWordItemCommand, Source={x:Reference this}}"
+                                        EventArgsConverter="{converters:TextChangedEventArgsConverter}"
+                                        EventName="TextChanged" />
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label Text="Delete" FontSize="Micro" VerticalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.DeleteRowCommand, Source={x:Reference this}}"
+                                            CommandParameter="{Binding .}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button
+                x:Name="addRow"
+                Command="{Binding AddRowCommand}"
+                Text="Add row" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

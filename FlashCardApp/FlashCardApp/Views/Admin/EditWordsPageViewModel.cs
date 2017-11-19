@@ -5,6 +5,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -14,6 +15,30 @@ namespace FlashCardApp.Views.Admin
     {
         INavigationService _navigationService;
         public ObservableCollection<WordModel> WordsList { get; set; } = new ObservableCollection<WordModel>();
+
+        private DelegateCommand<WordModel> _deleteRowCommand;
+        public DelegateCommand<WordModel> DeleteRowCommand
+        {
+            get
+            {
+                return _deleteRowCommand ?? (_deleteRowCommand = new DelegateCommand<WordModel>((w) =>
+                {
+                    WordsList.Remove(w);
+                }));
+            }
+        }
+
+        private DelegateCommand _addRowCommand;
+        public DelegateCommand AddRowCommand
+        {
+            get
+            {
+                return _addRowCommand ?? (_addRowCommand = new DelegateCommand(() =>
+                {
+                    WordsList.Add(new WordModel { Index = WordsList.Count });
+                }));
+            }
+        }
 
         private DelegateCommand _saveWordsListCommand;
         public DelegateCommand SaveWordsListCommand

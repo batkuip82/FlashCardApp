@@ -6,6 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MainPage.xaml.cs" />
+    <Compile Remove="MasterDetailMenuItem.cs" />
+    <Compile Remove="MasterDetailPageDetail.xaml.cs" />
+    <Compile Remove="MasterDetailPageMaster.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="MainPage.xaml" />
+    <EmbeddedResource Remove="MasterDetailPageDetail.xaml" />
+    <EmbeddedResource Remove="MasterDetailPageMaster.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Prism.Unity.Forms">
       <Version>7.0.0.168-pre</Version>
     </PackageReference>
@@ -15,15 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="MasterDetailMenuItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MasterDetailPageMaster.xaml.cs">
-      <DependentUpon>MasterDetailPageMaster.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="MasterDetailPageDetail.xaml.cs">
-      <DependentUpon>MasterDetailPageDetail.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\Admin\EditWordsPage.xaml.cs">
       <DependentUpon>EditWordsPage.xaml</DependentUpon>
     </Compile>

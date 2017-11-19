@@ -12,7 +12,11 @@
     </ContentPage.ToolbarItems>
     <StackLayout>
         <Label IsVisible="{Binding FlashWords, Converter={x:Static converters:ItemSourceConverter.Instance}}" Text="No words added. Go Edit Words!" />
-        <cv:CarouselView x:Name="CarouselWords" ItemsSource="{Binding FlashWords}">
+        <Button Command="{Binding RestartFlashWordsCommand}" Text="Restart" />
+        <cv:CarouselView
+            x:Name="CarouselWords"
+            ItemsSource="{Binding FlashWords}"
+            Position="{Binding CurrentPosition, Mode=TwoWay}">
             <cv:CarouselView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>

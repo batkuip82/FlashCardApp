@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using FlashCardApp.Views;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;

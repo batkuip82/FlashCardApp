@@ -39,7 +39,7 @@ namespace FlashCardApp
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync(new Uri("/NavigationPage/Views/FlashCardPage", UriKind.Absolute));
+            NavigationService.NavigateAsync(new Uri("/NavigationPage/FlashCardPage", UriKind.Absolute));
         }
 
         protected override void RegisterTypes()
